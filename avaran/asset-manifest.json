@@ -1,0 +1,277 @@
+{
+  "assets": [
+    {
+      "asset": "assets/logo.png",
+      "source": "H2S data/avaranlogo.png",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/body.stl",
+      "source": "H2S data/AVARAN_R6_print/AVARAN_FINAL_BODY.stl",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/cartridge.stl",
+      "source": "H2S data/AVARAN_R6_print/AVARAN_FINAL_CARTRIDGE.stl",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/prototype-1.jpg",
+      "source": "H2S data/H2S wrist band/WhatsApp Image 2026-10-02 at 12.01.50 AM.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/prototype-2.jpg",
+      "source": "H2S data/H2S wrist band/WhatsApp Image 2026-10-02 at 12.02.05 AM.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/prototype-3.jpg",
+      "source": "H2S data/H2S wrist band/WhatsApp Image 2026-10-02 at 12.02.25 AM.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/prototype-4.jpg",
+      "source": "H2S data/H2S wrist band/WhatsApp Image 2026-10-02 at 12.03.04 AM.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/prototype-5.jpg",
+      "source": "H2S data/H2S wrist band/WhatsApp Image 2026-10-02 at 12.07.35 AM.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/chamber-1.jpg",
+      "source": "H2S data/H2S environment controller/WhatsApp Image 2026-10-01 at 11.58.18 PM.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/chamber-2.jpg",
+      "source": "H2S data/H2S environment controller/WhatsApp Image 2026-10-01 at 11.59.26 PM.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/chamber-3.jpg",
+      "source": "H2S data/H2S environment controller/WhatsApp Image 2026-10-01 at 11.59.42 PM.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/chamber.mp4",
+      "source": "H2S data/H2S environment controller/WhatsApp Video 2026-10-02 at 12.00.24 AM.mp4",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/chamber-arduino.jpg",
+      "source": "supplemental/WhatsApp Image 2026-10-02 at 2.40.19 AM.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/chamber-logger.png",
+      "source": "supplemental/WhatsApp Image 2026-10-02 at 2.49.54 AM.jpeg",
+      "processing": "Lossless PNG with six opaque privacy masks over serial-port identifiers and local file paths; measured values and interface otherwise unchanged."
+    },
+    {
+      "asset": "assets/app-1.png",
+      "source": "H2S data/H2S app ss/1.png",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/app-2.png",
+      "source": "H2S data/H2S app ss/2",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/app-3.png",
+      "source": "H2S data/H2S app ss/3",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/app-4.png",
+      "source": "H2S data/H2S app ss/4",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/app-5.png",
+      "source": "H2S data/H2S app ss/5",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/app-6.png",
+      "source": "H2S data/H2S app ss/6",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/app-both.png",
+      "source": "H2S data/H2S app ss/both.png",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b1-b.jpg",
+      "source": "H2S data/agNPs Patches data/Batch1/B1-B.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b1-f.jpg",
+      "source": "H2S data/agNPs Patches data/Batch1/B1-F.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b2-b.jpg",
+      "source": "H2S data/agNPs Patches data/Batch2/B2-B.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b2-f.jpg",
+      "source": "H2S data/agNPs Patches data/Batch2/B2-F.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b3-b.jpg",
+      "source": "H2S data/agNPs Patches data/Batch3/B3-B.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b3-f.jpg",
+      "source": "H2S data/agNPs Patches data/Batch3/B3-F.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b4-b.jpg",
+      "source": "H2S data/agNPs Patches data/Batch4/B4-B.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b4-f.jpg",
+      "source": "H2S data/agNPs Patches data/Batch4/B4-F.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b5-f.jpg",
+      "source": "H2S data/agNPs Patches data/Batch5/B5-F.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b5.1-b.jpg",
+      "source": "H2S data/agNPs Patches data/Batch5/B5.1-B.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/b5.2-b.jpg",
+      "source": "H2S data/agNPs Patches data/Batch5/B5.2-B.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/early-film.jpg",
+      "source": "H2S data/agNPs Patches data/First experiment color difference.jpeg",
+      "processing": "Byte-for-byte copy; original colour preserved."
+    },
+    {
+      "asset": "assets/recording.json",
+      "source": "Portable/Recordings/H2S_2026-09-30_15-36-18-703.csv",
+      "processing": "Deterministic CSV parse; whitelist of public columns; empty numeric fields remain null. All 1,781 rows retained. Wall-clock differences from timestamps with +05:30. No interpolation, dose calculation or patch matching."
+    }
+  ],
+  "models": {
+    "body": {
+      "min": [
+        -24,
+        -18,
+        0
+      ],
+      "max": [
+        24,
+        18,
+        8
+      ],
+      "unit": "mm (CAD interpretation)",
+      "coordinate_system": "Original shared CAD coordinates; neither mesh recentered."
+    },
+    "cartridge": {
+      "min": [
+        -16,
+        -15.59999942779541,
+        2.3999998569488525
+      ],
+      "max": [
+        16,
+        26,
+        6
+      ],
+      "unit": "mm (CAD interpretation)",
+      "coordinate_system": "Original shared CAD coordinates; neither mesh recentered."
+    }
+  },
+  "trials": [
+    {
+      "id": "B1",
+      "before": [
+        "assets/b1-b.jpg"
+      ],
+      "after": [
+        "assets/b1-f.jpg"
+      ],
+      "duration": "10 minutes",
+      "concentration": "Approximately 30 ppm",
+      "evidence": "qualitative",
+      "conditions_source": "team_report",
+      "matched_patch_ids": false
+    },
+    {
+      "id": "B2",
+      "before": [
+        "assets/b2-b.jpg"
+      ],
+      "after": [
+        "assets/b2-f.jpg"
+      ],
+      "duration": "20 minutes",
+      "concentration": "Approximately 20 ppm",
+      "evidence": "qualitative",
+      "conditions_source": "team_report",
+      "matched_patch_ids": false
+    },
+    {
+      "id": "B3",
+      "before": [
+        "assets/b3-b.jpg"
+      ],
+      "after": [
+        "assets/b3-f.jpg"
+      ],
+      "duration": "30 minutes",
+      "concentration": "Approximately 20 ppm",
+      "evidence": "qualitative",
+      "conditions_source": "team_report",
+      "matched_patch_ids": false
+    },
+    {
+      "id": "B4",
+      "before": [
+        "assets/b4-b.jpg"
+      ],
+      "after": [
+        "assets/b4-f.jpg"
+      ],
+      "duration": "45 minutes",
+      "concentration": "Approximately 20 ppm",
+      "evidence": "qualitative",
+      "conditions_source": "team_report",
+      "matched_patch_ids": false
+    },
+    {
+      "id": "B5",
+      "before": [
+        "assets/b5.1-b.jpg",
+        "assets/b5.2-b.jpg"
+      ],
+      "after": [
+        "assets/b5-f.jpg"
+      ],
+      "duration": "Around 12 hours",
+      "concentration": "Approximately 20 ppm",
+      "evidence": "qualitative",
+      "conditions_source": "team_report",
+      "matched_patch_ids": false
+    }
+  ]
+}

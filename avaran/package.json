@@ -1,0 +1,16 @@
+{
+  "name": "avaran-exhibit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare-assets": "node scripts/prepare-assets.mjs",
+    "build": "node scripts/build.mjs",
+    "audit": "node scripts/audit.mjs",
+    "dev": "node scripts/serve.mjs",
+    "check": "node --check dist/app.js && node --check dist/device.js && node --check dist/exhibit.js && node --check dist/tour.js && node --check dist/motion.js && node --check dist/ash.js && node --check dist/helix.js && node --check dist/dna.js && node --check dist/relay.js && node --check scripts/prepare-assets.mjs"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  }
+}

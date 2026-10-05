@@ -1,0 +1,10 @@
+# Normalise text files; never touch binary evidence assets.
+* text=auto
+.githooks/* text eol=lf
+*.sh text eol=lf
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.mp4 binary
+*.stl binary
+*.zip binary

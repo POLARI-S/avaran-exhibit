@@ -1,0 +1,48 @@
+const $=selector=>document.querySelector(selector);
+const click=selector=>{const button=$(selector);if(button&&!button.disabled)button.click();};
+const chapters=[
+  {name:'The device',target:'#home',focus:'.model-toolbar',label:'01 · THE IDEA',title:'Two patches. One passive wristband.',copy:'The reusable body holds a replaceable cartridge. Its optical sticker comes out with the cartridge, along with the exposed film and protected reference.',fact:'No battery or electronics on the wrist.',limit:'The reference barrier still needs validation.',action:'Open cartridge layers',hint:'First the cartridge slides out with its sticker; then its layers open. Drag to inspect any side.',prepare(){if($('#remove-cartridge').getAttribute('aria-pressed')==='true')click('#remove-cartridge');click('#reset-view');click('[data-part="cartridge"]');$('#component-details').open=false;},run(){click('#explode');return $('#explode').getAttribute('aria-pressed')==='true'?'The cartridge slides out, then opens its layers. Drag to examine the stack.':'The layers close onto the removed cartridge. Use Insert cartridge to return it to the body.';}},
+  {name:'The evidence',target:'.trial-toolbar',focus:'#trial-gallery',label:'02 · THE OBSERVATION',title:'Look at the actual film response.',copy:'B5 shows the clearest team-reported extended-exposure response. Compare the original before and after photographs; the other batches are available above the images.',fact:'Five preliminary trials · original photographs.',limit:'Approximate conditions and varying lighting make this qualitative evidence.',action:'Enlarge the after photograph',hint:'Look for the darker, uneven areas; individual patch identities are not matched.',prepare(){click('[data-trial="B5"]');},run(){const images=document.querySelectorAll('#trial-gallery .image-open');images[images.length-1]?.click();return 'The original after photograph is open. Close it to continue.';}},
+  {name:'The laboratory',target:'.lab-visual',focus:'#chamber-photo',label:'03 · THE EXPERIMENT',title:'Meet the system behind the experiments.',copy:'The chamber uses sensors, an Arduino, relays and temperature-control hardware. These electronics support laboratory measurements. Select a component to inspect the team’s photographs.',fact:'A built chamber, controller and desktop logger.',limit:'The laboratory sensor and the wearable film are separate measurement systems.',action:'Show the controller & logger',hint:'The application screenshot preserves its readings; private fields are masked.',prepare(){click('[data-chamber-view="1"]');click('.lab-parts [data-lab="gas"]');},run(){click('.lab-parts [data-lab="logger"]');return 'The actual controller application is shown. Its ppm remains an unvalidated estimate.';}},
+  {name:'The recording',target:'.replay-card',focus:'.reading-cards',label:'04 · THE RECORDED DATA',title:'Follow a real reading through time.',copy:'This is a replay of 1,781 recorded samples. We start at the first numeric H₂S estimate so you can compare the value, time and trace, then explore the rest of the session.',fact:'186 numeric estimates · 10.4% of the session.',limit:'Missing readings remain unavailable. Numerical ppm estimates are unvalidated.',action:'Play / pause the recording',hint:'The highlighted card shows the recorded estimate; the timeline lets you inspect gaps.',async prepare(context){await context.ensureReplay();if(context.isCurrent())click('#first-ppm');},run(){click('#replay-play');return $('#replay-play').getAttribute('aria-pressed')==='true'?'Recorded samples are playing. Use this button again to pause.':'Replay paused. The displayed values belong to the selected recorded sample.';}},
+  {name:'The phone workflow',target:'.app-preview',focus:'#app-image-open',label:'05 · THE INTENDED WORKFLOW',title:'From a photograph to an exposure estimate.',copy:'The phone interface demonstrates capture, region selection and record keeping. A future validated model would connect film colour to cumulative exposure at the badge, measured in ppm·h.',fact:'A working interface prototype with a proposed reading workflow.',limit:'The displayed example values are provisional; no validated colour-to-dose predictor is running.',action:'Show the example workflow',hint:'Use the screenshot tabs to compare capture, records and the example output.',prepare(){click('[data-app="scan"]');},run(){click('[data-app="example"]');return 'The example interface is shown. Its numbers demonstrate the workflow and are not validated results.';}},
+  {name:'What comes next',target:'.status-grid',focus:'.status-grid',label:'06 · THE TAKEAWAY',title:'A built prototype. A clear validation path.',copy:'You have seen the physical design, preliminary film observations, laboratory setup and recorded data. The next step is independent exposure calibration and testing on new samples.',fact:'Built hardware + recorded observations + a proposed phone workflow.',limit:'Dose accuracy, reference exclusion, selectivity, shelf life and field performance remain unvalidated.',action:'Revisit the original evidence',hint:'Use the chapter buttons to review any part, or finish and explore freely.',prepare(){},run(context){context.go(1);return null;}}
+];
+
+export function initJudgeTour(context){
+  const welcome=$('#tour-welcome'),tour=$('#tour-dialog');let index=0,revision=0,active=false,minimized=false;
+  const visitKey='avaran-tour-recommendation-v2';
+  const remember=()=>{try{sessionStorage.setItem(visitKey,'seen');}catch{/* The invitation still works when storage is unavailable. */}};
+  function dismissWelcome(){remember();welcome.close();$('#start-tour').focus({preventScroll:true});}
+  function stopMedia(){if($('#replay-play').getAttribute('aria-pressed')==='true')click('#replay-play');}
+  const map=$('#tour-chapters');
+  map.innerHTML=chapters.map((chapter,i)=>`<button data-tour-chapter="${i}" aria-label="Chapter ${i+1}: ${chapter.name}"><span>${String(i+1).padStart(2,'0')}</span>${chapter.name}</button>`).join('');
+  function minimize(value){minimized=value;tour.classList.toggle('minimized',value);$('#tour-minimize').textContent=value?'Expand':'Minimize';$('#tour-minimize').setAttribute('aria-expanded',String(!value));}
+  async function showChapter(next){
+    const token=++revision;index=next;const chapter=chapters[index];stopMedia();$('#tour-body').scrollTop=0;
+    document.querySelectorAll('.tour-highlight').forEach(el=>el.classList.remove('tour-highlight'));
+    $('#tour-title').textContent=chapter.title;$('#tour-copy').textContent=chapter.copy;$('#tour-label').textContent=chapter.label;$('#tour-fact').textContent=chapter.fact;$('#tour-limit').textContent=chapter.limit;$('#tour-hint').textContent=chapter.hint;$('#tour-feedback').textContent='';
+    $('#tour-progress').textContent=`${index+1} of ${chapters.length}`;$('#tour-meter').value=index+1;
+    $('#tour-back').disabled=index===0;$('#tour-next').textContent=index===chapters.length-1?'Finish tour':'Next chapter →';
+    $('#tour-action').textContent=chapter.action;$('#tour-action').disabled=true;
+    document.querySelectorAll('[data-tour-chapter]').forEach(button=>{if(Number(button.dataset.tourChapter)===index)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');});
+    $(chapter.target).scrollIntoView({behavior:'instant',block:'start'});
+    try{await chapter.prepare({...context,isCurrent:()=>active&&token===revision});}catch{if(token===revision)$('#tour-feedback').textContent='This demonstration could not load. You can continue through the remaining chapters.';}
+    if(!active||token!==revision)return;
+    $(chapter.focus).classList.add('tour-highlight');$('#tour-action').disabled=false;
+  }
+  function start(){remember();welcome.close();if(active)return;active=true;document.body.classList.add('tour-active');tour.show();minimize(false);showChapter(0);$('#tour-next').focus({preventScroll:true});}
+  function close(){active=false;revision++;stopMedia();tour.close();document.body.classList.remove('tour-active');document.querySelectorAll('.tour-highlight').forEach(el=>el.classList.remove('tour-highlight'));$('#start-tour').focus({preventScroll:true});}
+  $('#start-tour').addEventListener('click',()=>active?close():start());
+  $('#welcome-start').addEventListener('click',start);$('#welcome-skip').addEventListener('click',dismissWelcome);$('#welcome-close').addEventListener('click',dismissWelcome);
+  welcome.addEventListener('cancel',()=>remember());
+  $('#tour-close').addEventListener('click',close);$('#tour-minimize').addEventListener('click',()=>minimize(!minimized));
+  $('#tour-next').addEventListener('click',()=>index===chapters.length-1?close():showChapter(index+1));$('#tour-back').addEventListener('click',()=>showChapter(Math.max(0,index-1)));
+  map.addEventListener('click',event=>{const button=event.target.closest('[data-tour-chapter]');if(button)showChapter(Number(button.dataset.tourChapter));});
+  $('#tour-action').addEventListener('click',()=>{const message=chapters[index].run({go:showChapter});if(message)$('#tour-feedback').textContent=message;if(index===0)$('#tour-action').textContent=$('#explode').getAttribute('aria-pressed')==='true'?'Close cartridge layers':'Open cartridge layers';});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&active&&!$('#image-dialog').open){event.preventDefault();close();}});
+  let seen=false;try{seen=sessionStorage.getItem(visitKey)==='seen';}catch{}
+  // Wait for the intro counter (if any) so the invitation never lands on top of it.
+  if(!seen)Promise.resolve(window.avaranIntro).then(()=>setTimeout(()=>{if(!active&&!document.querySelector('dialog[open]'))welcome.showModal();},6500));
+}
+

@@ -1,0 +1,3 @@
+#!/bin/sh
+# Refuses commits that stage private material (see scripts/pre-commit-guard.js).
+exec node scripts/pre-commit-guard.js

@@ -1,0 +1,266 @@
+/* Apple-style design layer: system typography, materials, continuous corners, press feedback and spring-feel motion.
+   Loaded last. Presentation only — evidence, labels and limits are unchanged. */
+:root{
+  --font-text:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI Variable Text","Segoe UI",system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Segoe UI",system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --heading:var(--font-display);--body:var(--font-text);
+  --hairline:rgba(255,255,255,.09);--fill:rgba(255,255,255,.06);--fill-hover:rgba(255,255,255,.1);
+  --elevated:#111a26;--elevated2:#152030;
+  --radius-s:10px;--radius-m:16px;--radius-l:22px;--radius-xl:28px;
+  /* Critically damped spring approximation and its mirror for exits. */
+  --ease-out:cubic-bezier(.22,1,.36,1);--ease-in:cubic-bezier(.64,0,.78,0);
+  --material:rgba(14,22,33,.72);--material-thin:rgba(22,34,50,.55)
+}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{font-feature-settings:"kern";font-optical-sizing:auto}
+
+/* Typography: tracking and leading tighten as size grows; hierarchy from weight + size together. */
+h1,h2,h3{font-family:var(--font-display);font-weight:600;font-optical-sizing:auto}
+h1{font-size:clamp(2.75rem,5.2vw,4.6rem);line-height:1.04;letter-spacing:-.032em}
+h2{font-size:clamp(2.15rem,3.7vw,3.4rem);line-height:1.07;letter-spacing:-.026em}
+h3{letter-spacing:-.016em;line-height:1.2}
+h1 em,#tour-welcome h2 em{background:linear-gradient(100deg,#83c9ff 10%,#a9b8ff 60%,#c4b2f2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.intro{font-size:clamp(1.06rem,1.4vw,1.25rem);line-height:1.5;color:#b9c5d6;letter-spacing:-.008em}
+.section-title>p{font-size:17px;line-height:1.55;color:#b3bfd0}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em}
+.index{font-weight:600}
+.material-story h2{font-size:clamp(2.15rem,3.2vw,2.8rem)}
+.process-list h3,.pipeline-steps strong{font-weight:600}
+.reading-cards strong,.fact-strip strong,.dose-definition>strong,.footer-wordmark{font-weight:600;letter-spacing:-.022em}
+.reading-cards strong,.timeline-label>span,#recording-clock,.recording-coverage strong{font-variant-numeric:tabular-nums}
+
+/* Focus: a soft ring that follows each control's corner radius. */
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid rgba(131,201,255,.75);outline-offset:3px}
+
+/* Header: translucent material; a scroll-edge shadow replaces the hard divider. */
+.header{padding-block:12px;background:rgba(11,16,24,.7);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid transparent;transition:border-color .3s ease,background-color .3s ease}
+.header:after{content:'';position:absolute;left:0;right:0;top:100%;height:16px;pointer-events:none;background:linear-gradient(rgba(0,0,0,.28),transparent);opacity:0;transition:opacity .3s ease}
+.header.is-scrolled{border-bottom-color:var(--hairline)}.header.is-scrolled:after{opacity:1}
+.brand img{border-radius:8px}
+.brand>span{font-weight:650;letter-spacing:.08em}
+nav{gap:2px;padding:3px;border-radius:980px;background:var(--fill)}
+nav a{padding:6px 14px;border-radius:980px;transition:color .2s ease}
+nav.seg-ready a.active:after{display:none}
+nav .seg-indicator{border-radius:980px;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.12),0 1px 3px rgba(0,0,0,.3)}
+
+/* Buttons: capsule shapes, instant press response, spring-like release. */
+.button,.icon-button{border-radius:980px;border:1px solid rgba(255,255,255,.14);background:var(--fill);font-weight:590;letter-spacing:-.01em;transition:background-color .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease,transform .45s var(--ease-out)}
+.button:hover,.icon-button:hover{background:var(--fill-hover);border-color:rgba(255,255,255,.24)}
+.primary{background:var(--blue);border-color:transparent;color:#04111f;box-shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px -6px rgba(131,201,255,.45)}
+.primary:hover{background:#a8daff;border-color:transparent;color:#04111f}
+.icon-button{display:inline-grid;place-items:center;min-width:40px;min-height:40px;line-height:1}
+:is(.button,.icon-button,.app-live-link,nav a,.seg button,.logger-enlarge):active:not(:disabled){transform:scale(.96);transition-duration:.08s}
+.image-open{transition:transform .5s var(--ease-out)}.image-open:active{transform:scale(.985);transition-duration:.1s}
+.image-open img{transition:transform .7s var(--ease-out),filter .4s ease}
+@media(hover:hover){.image-open:hover img{transform:scale(1.015)}}
+.tour-start{padding-inline:16px}
+
+/* Segmented controls: options sit on a fill; one indicator glides between them (motion.js). */
+.seg{position:relative;isolation:isolate}
+.seg>:not(.seg-indicator){position:relative;z-index:1}
+.seg-indicator{position:absolute;left:0;top:0;z-index:0;pointer-events:none;border-radius:var(--radius-s);background:rgba(131,201,255,.15);box-shadow:inset 0 0 0 1px rgba(131,201,255,.34),0 1px 3px rgba(0,0,0,.25);opacity:0;transition:opacity .2s ease;will-change:transform}
+.seg.seg-ready button[aria-pressed=true],.seg.seg-ready button[aria-current=step]{background:transparent;border-color:transparent;box-shadow:none}
+.trial-options,.trace-options,.lab-visual .view-tabs{padding:3px;gap:2px;border-radius:14px;background:var(--fill)}
+.trial-options button,.trace-options button,.lab-visual .view-tabs button{border-radius:11px;transition:color .2s ease,background-color .2s ease,transform .45s var(--ease-out)}
+.trial-options button:hover,.trace-options button:hover,.lab-visual .view-tabs button:hover{border-color:transparent;background:rgba(255,255,255,.05)}
+.trial-options .seg-indicator,.trace-options .seg-indicator,.lab-visual .view-tabs .seg-indicator{border-radius:11px}
+.early-label{font-size:11px;font-weight:600;letter-spacing:.08em}
+
+/* Device workspace. */
+.prototype-status p{color:#9fb0c5}
+.device-workspace{border:1px solid var(--hairline);border-radius:var(--radius-l);box-shadow:0 40px 90px -40px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.04)}
+.model-stage{background:radial-gradient(120% 90% at 50% 38%,#1d3149 0%,#132032 50%,#0e1621 100%)}
+.stage-top{font-size:11px;font-weight:600}
+.model-stage .model-toolbar .button:not(.primary),.model-stage .model-view-controls button{background:var(--material-thin);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);border-color:rgba(255,255,255,.13)}
+.model-stage .model-toolbar .button:not(.primary):hover,.model-stage .model-view-controls button:hover{background:rgba(40,60,86,.7);border-color:rgba(255,255,255,.24)}
+.model-stage .model-toolbar .primary{background:var(--blue)}
+.parts-panel{background:var(--elevated);border-left-color:var(--hairline)}
+.panel-heading .eyebrow{font-size:11px}.panel-heading>span{font-size:11px}
+.part-list button{border-radius:var(--radius-s);transition:color .2s ease,background-color .2s ease,transform .45s var(--ease-out)}
+.part-list button:hover{background:rgba(255,255,255,.04)}
+.part-list button>i{font-size:10px}
+.part-detail{border-top-color:var(--hairline)}
+.part-detail .part-evidence{border-left:0;padding:10px 12px;border-radius:var(--radius-s);background:rgba(131,201,255,.06);box-shadow:inset 2px 0 0 #41628a}
+.fact-strip{border-color:var(--hairline)}.fact-strip>div{border-color:var(--hairline)}
+.fact-strip span{font-size:11px;font-weight:600}
+.fact-strip strong{font-size:1.4rem}
+
+/* Status chips: tinted capsules. */
+.status{border-radius:980px;padding:5px 11px;font-weight:600;letter-spacing:.06em;border:1px solid rgba(131,201,255,.28);background:rgba(131,201,255,.1);color:#a9dbff}
+.status.warm{border-color:rgba(229,187,104,.3);background:rgba(229,187,104,.1);color:var(--warm)}
+.lab-detail .status{font-size:10px}
+
+/* Cards and surfaces: continuous corners, hairlines, gentle elevation. */
+.section{padding-block:clamp(64px,8vw,112px)}
+.trial-toolbar,.evidence-limits,.material-section,.lab-section,.recording-section,.pipeline-section,.status-section,.next-validation,footer,.process-list li,.reading-cards,.replay-controls,.pipeline-steps>div{border-color:var(--hairline)}
+.trial-metadata{border-radius:var(--radius-m);border-color:var(--hairline);background:var(--elevated)}
+.trial-metadata span{font-size:11px;font-weight:600}
+.evidence-gallery .image-open{border-radius:var(--radius-m);overflow:hidden}
+.evidence-gallery img{border-radius:var(--radius-m)}
+.evidence-gallery figcaption{font-size:12px}
+.caveat{border-left:0;border-radius:var(--radius-m);box-shadow:inset 3px 0 0 #8a7041;background:#151a21}
+.evidence-limits summary,.component-details>summary{list-style:none;display:flex;align-items:center;gap:10px;font-weight:550}
+.evidence-limits summary::-webkit-details-marker,.component-details>summary::-webkit-details-marker{display:none}
+.evidence-limits summary:before,.component-details>summary:before{content:'';flex:none;width:7px;height:7px;margin:0 3px 3px 2px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(-45deg);transition:transform .35s var(--ease-out)}
+.evidence-limits[open]>summary:before,.component-details[open]>summary:before{transform:rotate(45deg)}
+.component-details>summary{display:none}
+@media(max-width:820px){.component-details>summary{display:flex}}
+.material-media .image-open{border-radius:var(--radius-xl);overflow:hidden}
+.material-media img{border-radius:var(--radius-xl)}
+.media-label{font-size:11px;font-weight:600}
+
+/* Laboratory. */
+.chamber-photo{border-radius:var(--radius-l)}
+#chamber-hotspots button{width:30px;height:30px;border:1.5px solid rgba(255,255,255,.92);background:rgba(13,28,44,.5);-webkit-backdrop-filter:blur(10px) saturate(160%);backdrop-filter:blur(10px) saturate(160%);box-shadow:0 2px 10px rgba(0,0,0,.35),0 0 0 4px rgba(131,201,255,.2);transition:background-color .2s ease,color .2s ease,box-shadow .3s ease,transform .45s var(--ease-out)}
+#chamber-hotspots button:hover,#chamber-hotspots button[aria-pressed=true]{background:var(--blue);color:#0b1f33;box-shadow:0 2px 12px rgba(0,0,0,.4),0 0 0 6px rgba(131,201,255,.3)}
+#chamber-hotspots button:active{transform:translate(-50%,-50%) scale(.86);transition-duration:.08s}
+.lab-panel,.lab-layout .lab-panel{border-radius:var(--radius-l);border-color:var(--hairline);background:var(--elevated)}
+.lab-parts button,.lab-layout .lab-parts button{border-color:transparent;background:rgba(255,255,255,.045);border-radius:var(--radius-s);transition:color .2s ease,background-color .2s ease,transform .45s var(--ease-out)}
+.lab-parts button:hover{border-color:transparent;background:rgba(255,255,255,.08)}
+.lab-detail{border-top-color:var(--hairline)}
+.signal-diagram,.lab-layout .signal-diagram{border-radius:var(--radius-l);border-color:var(--hairline)}
+.signal-row>span{border-radius:var(--radius-s);border-color:rgba(255,255,255,.1)}
+.video-details,.lab-layout .video-details{border-radius:var(--radius-l);border-color:var(--hairline)}
+.video-player{border-radius:var(--radius-m)}
+.video-play{border-radius:980px;padding:8px 20px 8px 8px;gap:12px;border:1px solid rgba(255,255,255,.28);background:rgba(16,26,40,.45);-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);box-shadow:0 10px 30px rgba(0,0,0,.45);font-weight:600;transition:background-color .2s ease,transform .45s var(--ease-out)}
+.video-play>span:first-child{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#0b1018;font-size:14px;padding-left:3px}
+.video-play:hover{background:rgba(30,48,70,.6)}
+.video-play:active{transform:translate(-50%,-50%) scale(.95);transition-duration:.08s}
+.logger-enlarge{border-radius:980px}
+
+/* Recording. */
+.replay-card{border-radius:var(--radius-xl);border-color:rgba(255,255,255,.1);background:linear-gradient(160deg,#162232,#0f1722);box-shadow:0 40px 90px -45px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.04)}
+.reading-cards span{font-size:11px;font-weight:600}
+.chart-wrap path{stroke-linejoin:round;stroke-linecap:round}
+.timeline-label input{-webkit-appearance:none;appearance:none;height:28px;margin-top:6px;background:transparent}
+.timeline-label input::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(to right,var(--blue) var(--p,0%),rgba(255,255,255,.16) var(--p,0%))}
+.timeline-label input::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-9px;border-radius:50%;background:#fff;border:0;box-shadow:0 2px 8px rgba(0,0,0,.45),0 0 0 .5px rgba(0,0,0,.15);transition:transform .3s var(--ease-out)}
+.timeline-label input:active::-webkit-slider-thumb{transform:scale(1.18)}
+.timeline-label input::-moz-range-track{height:4px;border-radius:2px;background:rgba(255,255,255,.16)}
+.timeline-label input::-moz-range-progress{height:4px;border-radius:2px;background:var(--blue)}
+.timeline-label input::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:0;box-shadow:0 2px 8px rgba(0,0,0,.45)}
+.timeline-label input:disabled{opacity:.4}
+.speed-label select{-webkit-appearance:none;appearance:none;border-radius:980px;border-color:rgba(255,255,255,.14);background:var(--fill) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23b7cce6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center/10px 6px;padding:6px 32px 6px 14px;color:var(--text)}
+.speed-label select option{background:#111d2b}
+
+/* Phone reader. */
+.app-preview{border-radius:var(--radius-xl);border-color:rgba(255,255,255,.1);background:#121d2b}
+.app-product-mark{border-radius:11px}
+.app-live-link{border-radius:980px;padding-inline:14px;transition:background-color .15s ease,border-color .15s ease,transform .45s var(--ease-out)}
+.app-preview .app-tabs{border-radius:13px;border-color:transparent;background:rgba(0,0,0,.28)}
+.app-preview .app-tabs button{border-radius:10px;transition:color .2s ease,transform .45s var(--ease-out)}
+.app-preview .app-tabs.seg-ready button[aria-pressed=true]{background:transparent;border-color:transparent;box-shadow:none}
+.app-preview .app-tabs .seg-indicator{border-radius:10px;background:#294b6c;box-shadow:inset 0 0 0 1px rgba(131,201,255,.35),0 2px 8px rgba(0,0,0,.3)}
+.app-screen-frame{border-radius:var(--radius-m);border-color:rgba(255,255,255,.14)}
+.pipeline-steps>div{border-radius:var(--radius-m);border-color:var(--hairline)}
+.dose-definition{border-radius:var(--radius-m)}
+
+/* Status. */
+.status-grid article{border-top:0;border-radius:var(--radius-l);box-shadow:inset 0 2px 0 #3f6792;background:var(--elevated)}
+.status-grid article:nth-child(n+3){box-shadow:inset 0 2px 0 #8a7041}
+
+/* Dialogs: glass materials that materialize from, and retreat along, the same path. */
+dialog{border-radius:var(--radius-l);border:1px solid rgba(255,255,255,.12);background:rgba(19,32,52,.86);-webkit-backdrop-filter:blur(30px) saturate(180%);backdrop-filter:blur(30px) saturate(180%);box-shadow:0 30px 90px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08)}
+#tour-welcome{border-radius:var(--radius-xl);background:radial-gradient(ellipse at top right,rgba(36,66,95,.9),rgba(17,30,45,.92) 70%)}
+#tour-welcome::backdrop{background:rgba(4,10,19,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.welcome-close,#tour-dialog #tour-close,#image-close{width:32px;height:32px;min-width:32px;min-height:32px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.1);font-size:18px;color:#d5e2f1}
+.welcome-close{top:14px;right:14px}
+.welcome-close:hover,#tour-dialog #tour-close:hover,#image-close:hover{background:rgba(255,255,255,.18)}
+.welcome-route{border-color:rgba(255,255,255,.12)}
+.welcome-route span{font-size:11px;font-weight:600}
+#tour-dialog{border-radius:var(--radius-l);background:rgba(16,28,43,.82)}
+#tour-dialog #tour-minimize{border-radius:980px;padding:5px 10px;background:rgba(255,255,255,.07)}
+#tour-meter,#tour-meter::-webkit-progress-bar,#tour-meter::-webkit-progress-value{border-radius:3px}
+#tour-meter{height:4px}
+#tour-fact{border-left:0;border-radius:var(--radius-s);box-shadow:inset 2px 0 0 #82caff}
+#tour-action{border-radius:var(--radius-s);background:rgba(131,201,255,.14);border-color:rgba(131,201,255,.3)}
+#tour-chapters{border-top-color:rgba(255,255,255,.1)}
+#tour-dialog .tour-controls{background:transparent}
+#tour-chapters button{border-radius:var(--radius-s);background:rgba(255,255,255,.04)}
+#tour-chapters span{font-size:10px}
+#tour-chapters .seg-indicator{border-radius:var(--radius-s)}
+.sheet-grabber{display:none}
+.tour-highlight{outline:2px solid rgba(117,186,255,.85);outline-offset:6px;border-radius:var(--radius-m)}
+.image-dialog{border-radius:var(--radius-l);background:rgba(16,24,35,.94)}
+.image-dialog::backdrop{background:rgba(5,10,16,.86)}
+.image-dialog>img{border-radius:var(--radius-s);touch-action:pinch-zoom;user-select:none;-webkit-user-select:none}
+/* JS zoom mode: the panel becomes a fading layer, so the picture can fly in from its thumbnail. */
+.image-dialog.js-zoom{background:transparent;border-color:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.image-dialog.js-zoom:before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;border:1px solid rgba(255,255,255,.12);background:rgba(16,24,35,.94);box-shadow:0 30px 90px rgba(0,0,0,.55);opacity:var(--chrome,1)}
+.image-dialog.js-zoom::backdrop{background:rgba(5,10,16,calc(.86*var(--chrome,1)))}
+.image-dialog.js-zoom .image-dialog-header,.image-dialog.js-zoom>p{opacity:var(--chrome,1)}
+.image-dialog.js-zoom>img{cursor:grab;will-change:transform}
+.image-dialog.is-zooming{overflow:visible}
+.image-dialog.is-dragging>img{cursor:grabbing}
+
+@media(prefers-reduced-motion:no-preference){
+  #tour-welcome{transition:opacity .35s var(--ease-out),transform .55s var(--ease-out),filter .4s var(--ease-out),overlay .55s allow-discrete,display .55s allow-discrete}
+  #tour-welcome:not([open]){opacity:0;transform:scale(.95);filter:blur(10px)}
+  @starting-style{#tour-welcome[open]{opacity:0;transform:scale(.95);filter:blur(10px)}}
+  #tour-welcome::backdrop{transition:opacity .35s ease,overlay .35s allow-discrete,display .35s allow-discrete}
+  #tour-welcome:not([open])::backdrop{opacity:0}
+  @starting-style{#tour-welcome[open]::backdrop{opacity:0}}
+  /* The guide enters from, and leaves toward, the edge it is anchored to. */
+  #tour-dialog{transition:opacity .3s var(--ease-out),transform .5s var(--ease-out),display .5s allow-discrete}
+  #tour-dialog:not([open]){opacity:0;transform:translateX(40px)}
+  @starting-style{#tour-dialog[open]{opacity:0;transform:translateX(40px)}}
+  .image-dialog:not(.js-zoom){transition:opacity .3s var(--ease-out),transform .45s var(--ease-out),overlay .45s allow-discrete,display .45s allow-discrete}
+  .image-dialog:not(.js-zoom):not([open]){opacity:0;transform:scale(.96)}
+  @starting-style{.image-dialog:not(.js-zoom)[open]{opacity:0;transform:scale(.96)}}
+  #tour-dialog.is-dragging{transition:none}
+  /* First screen settles in once; later sections reveal as they arrive. */
+  .intro-row>*,.device-workspace,.device-footnote{animation:avaran-rise .9s var(--ease-out) both}
+  .intro-row>:nth-child(2){animation-delay:.08s}.device-workspace{animation-delay:.14s}.device-footnote{animation-delay:.2s}
+  .reveal{opacity:0;transform:translateY(28px)}
+  .reveal.in{opacity:1;transform:none;transition:opacity .8s var(--ease-out) var(--stagger,0ms),transform 1s var(--ease-out) var(--stagger,0ms)}
+  /* The guided tour jumps straight to its subject; nothing should still be arriving. */
+  .tour-active .reveal{opacity:1;transform:none;transition:none}
+}
+@keyframes avaran-rise{from{opacity:0;transform:translateY(18px)}}
+@media print{.reveal{opacity:1!important;transform:none!important}}
+
+/* Responsive refinements. */
+@media(max-width:1000px){
+  #tour-dialog{border-radius:var(--radius-l)}
+  #tour-dialog .sheet-grabber{display:block;flex-shrink:0;width:36px;height:5px;margin:-6px auto 8px;border-radius:3px;background:rgba(255,255,255,.3);touch-action:none;cursor:grab}
+  #tour-dialog .tour-top{touch-action:none}
+  @media(prefers-reduced-motion:no-preference){
+    #tour-dialog:not([open]){transform:translateY(calc(100% + 24px))}
+    @starting-style{#tour-dialog[open]{transform:translateY(calc(100% + 24px))}}
+  }
+}
+@media(max-width:820px){
+  .header nav{border-top:0;padding:3px;gap:0}
+  .header nav a{padding:6px 10px}
+  .section-title>p{font-size:16px}
+}
+@media(max-width:480px){
+  .header nav{overflow-x:auto;scrollbar-width:none}.header nav::-webkit-scrollbar{display:none}
+  .header nav a{padding:6px 8px;font-size:12.5px;white-space:nowrap}
+  #chamber-hotspots button{width:28px;height:28px}
+  .intro-row h1{font-size:2.6rem}
+  .replay-card{border-radius:var(--radius-l)}
+  .app-preview{border-radius:var(--radius-l)}
+}
+@media(max-width:400px){
+  .model-stage .model-toolbar,.model-stage .model-view-controls{gap:6px}
+  .model-stage .model-toolbar .button,.model-stage .model-view-controls .button{padding:7px 11px;font-size:11.5px;letter-spacing:-.015em}
+  .model-stage .model-toolbar .icon-button,.model-stage .model-view-controls .icon-button{min-width:34px;min-height:34px;padding:0;font-size:16px}
+}
+@media(max-width:360px){.header nav{padding:2px}.header nav a{padding:6px 5px;font-size:11.5px;letter-spacing:-.01em}}
+
+/* Accessibility preferences: frostier or solid surfaces; defined edges for higher contrast. */
+@media(prefers-reduced-transparency:reduce){
+  .header{background:#0b1018;-webkit-backdrop-filter:none;backdrop-filter:none}
+  dialog,#tour-dialog,#tour-welcome,.image-dialog.js-zoom:before{background:#132034;-webkit-backdrop-filter:none;backdrop-filter:none}
+  #tour-welcome::backdrop{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(4,10,19,.9)}
+  .model-stage .model-toolbar .button:not(.primary),.model-stage .model-view-controls button,.video-play,#chamber-hotspots button{-webkit-backdrop-filter:none;backdrop-filter:none;background:#14263a}
+}
+@media(prefers-contrast:more){
+  :root{--hairline:rgba(255,255,255,.35);--line:#6a7b92;--muted:#d0d9e6}
+  .header,dialog,#tour-dialog,#tour-welcome{background:#0b1018;-webkit-backdrop-filter:none;backdrop-filter:none;border-color:#9fb3cc}
+  .button,.icon-button,.status,.seg-indicator{border-color:rgba(255,255,255,.6)}
+  .seg-indicator{box-shadow:inset 0 0 0 2px #83c9ff}
+  h1 em,#tour-welcome h2 em{background:none;color:var(--blue)}
+}

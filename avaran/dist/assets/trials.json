@@ -1,0 +1,73 @@
+[
+  {
+    "id": "B1",
+    "before": [
+      "assets/b1-b.jpg"
+    ],
+    "after": [
+      "assets/b1-f.jpg"
+    ],
+    "duration": "10 minutes",
+    "concentration": "Approximately 30 ppm",
+    "evidence": "qualitative",
+    "conditions_source": "team_report",
+    "matched_patch_ids": false
+  },
+  {
+    "id": "B2",
+    "before": [
+      "assets/b2-b.jpg"
+    ],
+    "after": [
+      "assets/b2-f.jpg"
+    ],
+    "duration": "20 minutes",
+    "concentration": "Approximately 20 ppm",
+    "evidence": "qualitative",
+    "conditions_source": "team_report",
+    "matched_patch_ids": false
+  },
+  {
+    "id": "B3",
+    "before": [
+      "assets/b3-b.jpg"
+    ],
+    "after": [
+      "assets/b3-f.jpg"
+    ],
+    "duration": "30 minutes",
+    "concentration": "Approximately 20 ppm",
+    "evidence": "qualitative",
+    "conditions_source": "team_report",
+    "matched_patch_ids": false
+  },
+  {
+    "id": "B4",
+    "before": [
+      "assets/b4-b.jpg"
+    ],
+    "after": [
+      "assets/b4-f.jpg"
+    ],
+    "duration": "45 minutes",
+    "concentration": "Approximately 20 ppm",
+    "evidence": "qualitative",
+    "conditions_source": "team_report",
+    "matched_patch_ids": false
+  },
+  {
+    "id": "B5",
+    "before": [
+      "assets/b5.1-b.jpg",
+      "assets/b5.2-b.jpg"
+    ],
+    "after": [
+      "assets/b5-f.jpg"
+    ],
+    "duration": "Around 12 hours",
+    "concentration": "Approximately 20 ppm",
+    "evidence": "qualitative",
+    "conditions_source": "team_report",
+    "matched_patch_ids": false
+  }
+]

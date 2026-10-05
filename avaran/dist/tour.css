@@ -1,0 +1,43 @@
+#tour-welcome{inset:0;margin:auto;width:690px;max-width:calc(100vw - 32px);height:fit-content;max-height:calc(100dvh - 40px);overflow:auto;padding:40px;background:radial-gradient(ellipse at top right,#24425f,#111e2d 70%);border:1px solid #54799e;border-radius:12px;box-shadow:0 30px 140px #000b}
+#tour-welcome::backdrop{background:#040a13bd;backdrop-filter:blur(6px)}
+#tour-welcome .eyebrow{font-size:10px;letter-spacing:.12em;padding-right:20px;color:#9acef3}
+.welcome-close{position:absolute;right:14px;top:12px;border:0;background:none;font-size:25px}
+#tour-welcome h2{font-size:clamp(2rem,4vw,3rem);line-height:1.06;margin:23px 0 20px;letter-spacing:-.04em}
+#tour-welcome h2 em{font-style:normal;color:#8ed0ff}
+#welcome-copy{font-size:15px;line-height:1.8;max-width:560px}
+.welcome-route{display:grid;grid-template-columns:repeat(3,1fr);gap:19px;border-top:1px solid #405873;border-bottom:1px solid #405873;padding:24px 0;margin:25px 0}
+.welcome-route span{font-size:10px;color:#7ebcf0;letter-spacing:.13em}.welcome-route strong{display:block;font-size:13px;font-weight:550;margin:7px 0}
+#tour-welcome .welcome-route p{font-size:12px;line-height:1.65;color:#9eb2cb}
+.welcome-actions{display:flex;gap:10px;flex-wrap:wrap}.welcome-actions button{font-size:14px}
+#tour-welcome .welcome-meta{font-size:11px;color:#8fa6c1;margin-top:18px}
+#tour-dialog{inset:100px 18px auto auto;width:358px;max-width:calc(100vw - 32px);max-height:calc(100dvh - 118px);overflow:auto;border-radius:9px;padding:22px;background:#111e2df7;box-shadow:0 12px 50px #0007}
+#tour-dialog .tour-top{margin:0 0 12px;gap:10px;font-size:10px;letter-spacing:.1em}
+#tour-dialog .tour-top b{font-weight:400;color:#94a9c0;margin-left:8px;letter-spacing:0}
+#tour-dialog .tour-top>div{display:flex;align-items:center;gap:4px}
+#tour-dialog #tour-minimize{font-size:11px;letter-spacing:0;padding:5px;background:none;color:#a9bdd3;border:0}
+#tour-dialog #tour-close{font-size:22px;background:none;padding:0 5px}
+#tour-meter{display:block;width:100%;height:3px;border:0;accent-color:#8bcaff;border-radius:9px;background:#2b4058}
+#tour-meter::-webkit-progress-bar{background:#2b4058}#tour-meter::-webkit-progress-value{background:#8bcaff}
+#tour-dialog h2{font-size:1.55rem;line-height:1.14;margin:20px 0 16px}
+#tour-label{font-size:10px!important;letter-spacing:.1em;color:#7fb9e5!important;margin-bottom:11px}
+#tour-copy{font-size:13px;line-height:1.75}
+#tour-fact{font-size:12px;margin-top:18px;padding:11px 13px;border-left:2px solid #82caff;background:#182c41;color:#d7e8f5}
+#tour-limit{font-size:11px;line-height:1.65;color:#b5a584;margin-top:12px}
+#tour-action{width:100%;margin-top:20px;background:#234461;border:1px solid #567f9f;font-size:12px;text-align:left;padding:11px 13px}
+#tour-hint{font-size:11px;line-height:1.6;color:#99afc7;margin-top:9px}
+#tour-feedback{font-size:11px;line-height:1.65;color:#a6d5b9;margin-top:10px}#tour-feedback:empty{display:none}
+#tour-chapters{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:20px;padding-top:16px;border-top:1px solid #2d4159}
+#tour-chapters button{text-align:left;padding:8px;font-size:10px;border:1px solid transparent;background:#0e1926;border-radius:3px;color:#a7b9cd;line-height:1.5}
+#tour-chapters span{color:#6c93b7;margin-right:6px;font-size:9px}#tour-chapters button[aria-current=step]{border-color:#527b9f;color:#bee6ff;background:#1c334a}
+#tour-dialog .tour-controls{gap:8px;margin-top:18px}#tour-dialog .tour-controls button{font-size:12px;padding:10px 12px}
+#tour-dialog.minimized #tour-body,#tour-dialog.minimized #tour-meter{display:none}#tour-dialog.minimized h2{font-size:1.1rem;margin:12px 0}
+.tour-active main,.tour-active footer{margin-right:396px}.tour-active .device-workspace,.tour-active .lab-layout,.tour-active .pipeline-grid{grid-template-columns:1fr}
+.tour-active .intro-row{display:block}.tour-active .prototype-status{text-align:left;margin-top:15px}.tour-active .parts-panel{border-left:0;border-top:1px solid var(--line)}
+.tour-active .part-list{display:grid;grid-template-columns:1fr 1fr}.tour-active .section-title{display:block}.tour-active .section-title>p{margin-top:20px}
+.tour-active .lab-bottom,.tour-active .recording-notes{grid-template-columns:1fr}.tour-active .reading-cards{grid-template-columns:1fr 1fr;gap:18px}
+.tour-active .reading-cards>div{border:0;padding:0}.tour-active .replay-controls{gap:12px;flex-wrap:wrap}.tour-active .timeline-label{order:3;flex-basis:100%}
+.tour-active .evidence-gallery img{height:180px}.tour-active .app-image-button img{height:400px}.tour-highlight{outline:2px solid #75baff;outline-offset:5px;scroll-margin-top:110px}
+@media(max-width:1000px){.tour-active main,.tour-active footer{margin-right:0}.tour-active main{padding-bottom:340px}#tour-dialog{inset:auto 12px 12px;width:calc(100% - 24px);max-width:none;max-height:42dvh;padding:16px 18px}#tour-dialog h2{font-size:1.25rem;margin:12px 0}#tour-dialog .tour-top{margin-bottom:8px}#tour-dialog .tour-controls{position:sticky;bottom:-16px;background:#111e2d;padding:10px 0 2px;margin-top:10px}#tour-dialog.minimized{max-height:180px}#tour-chapters{grid-template-columns:repeat(3,1fr)}#tour-dialog.minimized .tour-controls{padding:0}.tour-active .model-viewport{height:400px}.tour-active .model-stage{min-height:400px}}
+@media(max-width:480px){#tour-welcome{padding:27px 22px}#tour-welcome h2{font-size:2.2rem}#welcome-copy{font-size:13px}.welcome-route{grid-template-columns:1fr;gap:13px;margin:20px 0;padding:17px 0}.welcome-route>div{display:grid;grid-template-columns:46px 1fr;column-gap:8px}.welcome-route span{grid-row:1/3;padding-top:3px}.welcome-route strong{margin:0 0 3px}.welcome-route p{grid-column:2}.welcome-actions{display:grid;grid-template-columns:1fr}.welcome-actions button{font-size:13px}#tour-welcome .welcome-meta{font-size:10px}#tour-chapters{grid-template-columns:1fr 1fr}#tour-dialog .tour-controls{bottom:-16px}.tour-active .part-list{grid-template-columns:1fr 1fr}}
+
+#tour-dialog[open]{display:flex;flex-direction:column;height:calc(100dvh - 118px);overflow:hidden}#tour-dialog .tour-top,#tour-dialog h2,#tour-meter,#tour-dialog .tour-controls{flex-shrink:0}#tour-body{min-height:0;overflow:auto;padding-right:7px}#tour-dialog.minimized[open]{height:auto}#tour-dialog .tour-controls{margin-top:14px}#tour-dialog .tour-controls button{white-space:nowrap}@media(max-width:1000px){#tour-dialog[open]{height:42dvh}#tour-dialog.minimized[open]{height:auto}#tour-dialog .tour-controls{position:static;padding:8px 0 0;margin-top:6px}#tour-dialog h2{font-size:1.15rem}}
