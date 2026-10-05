@@ -1,3 +1,4 @@
 #!/bin/sh
 # Refuses commits that stage private material (see scripts/pre-commit-guard.js).
-exec node scripts/pre-commit-guard.js
+# Located relative to this hook, so it works whether the repo root is avaran/ or its parent.
+exec node "$(dirname "$0")/../scripts/pre-commit-guard.js"

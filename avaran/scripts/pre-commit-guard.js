@@ -2,13 +2,15 @@
 // Pre-commit safety net: refuses a commit if it stages anything that this project's
 // own README says must never reach the public repo — even via `git add -f`, which
 // silently defeats .gitignore. Belt-and-suspenders on top of .gitignore, not a
-// replacement for it. Installed per clone with: git config core.hooksPath .githooks
+// replacement for it. Installed per clone with: git config core.hooksPath avaran/.githooks
+// (or .githooks when avaran/ itself is the repository root).
 // (.githooks/pre-commit runs this script).
 import { execSync } from 'node:child_process';
 
 const FORBIDDEN = [
-  /^source-assets\//,
-  /^qa\//,
+  /(^|\/)source-assets\//,
+  /(^|\/)qa\//,
+  /(^|\/)node_modules\//,
   /(^|\/)\.env(\..*)?$/,
   /(^|\/).*secret.*/i,
   /(^|\/).*-private\./i,

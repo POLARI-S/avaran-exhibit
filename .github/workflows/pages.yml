@@ -1,4 +1,4 @@
-# Publishes the built static exhibit (dist/) to GitHub Pages on every push to main.
+# Publishes the built static exhibit (avaran/dist/) to GitHub Pages on every push to main.
 # One-time setup: repo Settings > Pages > Build and deployment > Source: "GitHub Actions".
 name: Deploy exhibit to GitHub Pages
 
@@ -27,6 +27,6 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: dist
+          path: avaran/dist
       - id: deployment
         uses: actions/deploy-pages@v4
